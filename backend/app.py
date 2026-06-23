@@ -5,11 +5,11 @@ from flask import Flask, request, jsonify
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
 
-from backend.config import Config
-from backend.database.db import db
-from backend.database.models import Patients, Queue, ConsultationHistory, Settings, AuditLogs, Notifications
-from backend.services.ai_engine import AiEngine
-from backend.services.queue_manager import QueueManager
+from config import Config
+from database.db import db
+from database.models import Patients, Queue, ConsultationHistory, Settings, AuditLogs, Notifications
+from services.ai_engine import AiEngine
+from services.queue_manager import QueueManager
 
 # Create instance folder if not exists
 instance_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'instance')

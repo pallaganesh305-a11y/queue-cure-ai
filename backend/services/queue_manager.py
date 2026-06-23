@@ -1,8 +1,8 @@
 import threading
 from datetime import datetime
-from backend.database.db import db
-from backend.database.models import Patients, Queue, ConsultationHistory, AuditLogs, Notifications, Settings
-from backend.services.ai_engine import AiEngine
+from database.db import db
+from database.models import Patients, Queue, ConsultationHistory, AuditLogs, Notifications, Settings
+from services.ai_engine import AiEngine
 
 # Thread safety lock for concurrent requests (e.g., dual receptionists calling "Call Next" simultaneously)
 queue_lock = threading.Lock()

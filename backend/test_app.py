@@ -1,9 +1,9 @@
 import pytest
 from datetime import datetime, timedelta
-from backend.app import app, db
-from backend.database.models import Patients, Queue, Settings, ConsultationHistory, AuditLogs
-from backend.services.ai_engine import AiEngine
-from backend.services.queue_manager import QueueManager
+from app import app, db
+from database.models import Patients, Queue, Settings, ConsultationHistory, AuditLogs
+from services.ai_engine import AiEngine
+from services.queue_manager import QueueManager
 
 @pytest.fixture
 def client():

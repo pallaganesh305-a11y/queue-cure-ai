@@ -1,5 +1,5 @@
 from datetime import datetime
-from backend.database.db import db
+from database.db import db
 
 class Settings(db.Model):
     __tablename__ = 'settings'

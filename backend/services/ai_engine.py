@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import func
-from backend.database.db import db
-from backend.database.models import Patients, Queue, ConsultationHistory, Settings
+from database.db import db
+from database.models import Patients, Queue, ConsultationHistory, Settings
 
 class AiEngine:
     @staticmethod
