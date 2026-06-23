@@ -1,0 +1,26 @@
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Python
+backend/__pycache__/
+backend/instance/
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/
+
+# Environment files
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
