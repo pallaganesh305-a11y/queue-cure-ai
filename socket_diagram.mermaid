@@ -1,31 +1,41 @@
 sequenceDiagram
     autonumber
-    actor Receptionist as Receptionist Dashboard
-    participant Backend as Flask Backend
-    participant DB as SQLite DB
-    actor TV as Patient TV Screen
-    actor Mobile as Patient Mobile Screen
 
-    %% Enqueuing Patient
-    Note over Receptionist, TV: Scenario A: Registering a New Patient
-    Receptionist->>Backend: HTTP POST /api/patients (payload)
-    Backend->>DB: INSERT into patients & queue (atomic)
-    DB-->>Backend: Success (Returns Token)
-    Backend->>Backend: Recalculate Wait Times (AI Engine)
-    Backend-->>TV: WS Broadcast "queue_updated" (updated list)
-    Backend-->>Receptionist: WS Broadcast "queue_updated" (updated list)
-    Backend-->>Mobile: WS Broadcast "queue_updated" (updated list)
-    Backend-->>Receptionist: HTTP 201 Created Response
+    actor Receptionist
+    participant Backend
+    participant DB
+    actor TV
+    actor Mobile
 
-    %% Calling Next Patient
-    Note over Receptionist, TV: Scenario B: Calling the Next Patient
-    Receptionist->>Backend: HTTP POST /api/queue/call-next
-    Backend->>DB: Complete current; set next status to "consulting"
-    DB-->>Backend: Success (Returns Called Patient details)
-    Backend->>Backend: Recalculate Wait Times
-    Backend-->>TV: WS Broadcast "patient_called" (Token & Room)
-    TV->>TV: Play Chime + Trigger Speech synthesis (TTS)
-    Backend-->>TV: WS Broadcast "queue_updated" (new list & stats)
-    Backend-->>Receptionist: WS Broadcast "queue_updated" (new list & stats)
-    Backend-->>Mobile: WS Broadcast "queue_updated" (new list & stats)
-    Backend-->>Receptionist: HTTP 200 OK Response
+    Note over Receptionist,TV: Register New Patient
+
+    Receptionist->>Backend: POST /api/patients
+    Backend->>DB: Insert patient and queue
+    DB-->>Backend: Token created
+    Backend->>Backend: Calculate wait time
+    Backend-->>TV: queue_updated
+    Backend-->>Receptionist: queue_updated
+    Backend-->>Mobile: queue_updated
+    Backend-->>Receptionist: HTTP 201
+
+    Note over Receptionist,TV: Call Next Patient
+
+    Receptionist->>Backend: POST /api/queue/call-next
+    Backend->>DB: Update queue status
+    DB-->>Backend: Success
+    Backend->>Backend: Recalculate wait time
+    Backend-->>TV: patient_called
+    Backend-->>TV: queue_updated
+    Backend-->>Receptionist: queue_updated
+    Backend-->>Mobile: queue_updated
+    Backend-->>Receptionist: HTTP 200
+
+    Note over Receptionist,TV: Complete Consultation
+
+    Receptionist->>Backend: POST /api/queue/complete
+    Backend->>DB: Save consultation
+    DB-->>Backend: Success
+    Backend->>Backend: Update analytics
+    Backend-->>Receptionist: queue_updated
+    Backend-->>TV: queue_updated
+    Backend-->>Mobile: queue_updated
