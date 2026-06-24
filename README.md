@@ -238,19 +238,4 @@ npm run dev
 
 ---
 
-## 💬 Portfolio & Resume Showcase Copy
 
-### Resume Bullet Points
-* **Queue Cure AI**: Engineered a real-time healthcare clinic queue management SaaS using **React**, **Python Flask**, and **Socket.IO** WebSockets, reducing wait times and manual scheduling friction.
-* **Smart Wait Predictions**: Developed a wait estimation engine using dynamic moving averages of consultation durations, doctor speed multipliers, and time-of-day traffic scales.
-* **Concurrency Protection**: Resolved multi-user write race conditions on the database layer by implementing thread-locks, ensuring zero duplicate token generation in concurrent calling scenarios.
-
-### LinkedIn Showcase Post
-> 🚀 Just built **Queue Cure AI 2.0**—a real-time clinic queue management platform built for hackathons but designed as a premium commercial SaaS!
-> 
-> 🔹 **Vibrant Frontend**: React, Tailwind CSS, and Framer Motion with dark/light theme switching.
-> 🔹 **WebSocket Updates**: Dual-screen synchronization between receptionists and patient TV screens using Socket.IO.
-> 🔹 **Dynamic Estimations**: Advanced wait time predictions scaling with doctor speeds and time-of-day loads.
-> 🔹 **Administrative Assistant**: An interactive AI chatbot answering questions like "Who has waited the longest?".
-> 
-> Check out the repo! 💻🏥 #ReactJS #Python #WebSockets #SoftwareEngineering
